@@ -13,7 +13,7 @@ class decisiontree:
         while seek_node.result is None:
             try:
                 seek_node = seek_node.value_node_dic[features[seek_node.attr]]
-            except AttributeError:
+            except KeyError:
                 raise ValueError(str(features[seek_node.attr]) \
                     + " is not an known value in attribute " \
                     + str(seek_node.attr))
