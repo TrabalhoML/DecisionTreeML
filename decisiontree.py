@@ -19,6 +19,9 @@ class decisiontree:
                     + str(seek_node.attr))
         return seek_node.result
 
+    def __str__(self):
+        return str(self.root)
+
 
 my_data=[['slashdot','USA','yes','<20','None'],
 ['google','France','yes','>20','Premium'],
@@ -38,4 +41,5 @@ my_data=[['slashdot','USA','yes','<20','None'],
 ['kiwitobes','France','yes','<20','Basic']]
 
 tree = decisiontree(training_data=my_data)
+print(str(tree))
 print(tree.classify(['(direct)','France','yes','>20'])) #KeyError
