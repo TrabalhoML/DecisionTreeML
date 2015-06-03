@@ -1,4 +1,5 @@
 from tree_training import tree_training
+from bayes import calculateBayes
 
 class decisiontree:
     def __init__(self,root=None,training_data=None):
@@ -40,6 +41,9 @@ my_data=[['slashdot','USA','yes','<20','None'],
 ['google','UK','yes','<20','Basic'],
 ['kiwitobes','France','yes','<20','Basic']]
 
+case = ['google','France','yes','>20']
+
 tree = decisiontree(training_data=my_data)
 print(str(tree))
-print(tree.classify(['(direct)','France','yes','>20'])) #KeyError
+print(tree.classify(case)) #KeyError
+print(calculateBayes(my_data, case))
