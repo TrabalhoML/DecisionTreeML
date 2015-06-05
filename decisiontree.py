@@ -41,7 +41,7 @@ my_data=[['slashdot','USA','yes','<20','None'],
 ['google','UK','yes','<20','Basic'],
 ['kiwitobes','France','yes','<20','Basic']]
 
-case = ['google','France','yes','>20']
+case = ['kiwitobes','New Zealand','yes','>20']
 
 tree = decisiontree(training_data=my_data)
 print(str(tree))
