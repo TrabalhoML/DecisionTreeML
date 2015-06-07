@@ -3,7 +3,7 @@ from decisiontree import decisiontree
 
 def split_dataset(dataset):
 	trees = []
-	attrs = range(0, len(dataset[0])-1)
+	attrs = list(range(0, len(dataset[0])-1))
 	tree_attr_1 = []
 	tree_attr_2 = []
 	is_tree_1 = True
@@ -21,7 +21,6 @@ def split_dataset(dataset):
 	return trees
 
 def create_tree(dataset, tree_attr):
-	print(tree_attr)
 	sub_dataset = []
 	for row in dataset:
 		attrs = []

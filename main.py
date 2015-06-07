@@ -1,8 +1,11 @@
 from bayes import calculateBayes
 from random_forest import split_dataset
 from decisiontree import decisiontree
+import numpy
+from sklearn import cross_validation
 
-my_data=[['slashdot','USA','yes','<20','None'],
+my_data=[
+['slashdot','USA','yes','<20','None'],
 ['google','France','yes','>20','Premium'],
 ['digg','USA','yes','>20','Basic'],
 ['kiwitobes','France','yes','>20','Basic'],
@@ -21,12 +24,18 @@ my_data=[['slashdot','USA','yes','<20','None'],
 
 case = ['kiwitobes','New Zealand','yes','>20']
 
-tree = decisiontree(training_data=my_data)
+dataset = numpy.loadtxt("car-data.txt", dtype="str", delimiter=",")
+case = ['vhigh','vhigh','2','4','big','med']
+
+training, test = cross_validation.train_test_split(my_data, test_size=0.2, random_state=1)
+training, validation = cross_validation.train_test_split(training, test_size=0.1, random_state=1)
+
+tree = decisiontree(training_data=dataset)
 forest = split_dataset(my_data)
-print(str(tree))
+# print(str(tree))
 print(tree.classify(case)) #KeyError
 print(calculateBayes(my_data, case))
-print(forest[0])
-print(forest[0].classify(case))
-print(forest[1])
-print(forest[1].classify(case))
+# print(forest[0])
+# print(forest[0].classify(case))
+# print(forest[1])
+# print(forest[1].classify(case))
