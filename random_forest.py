@@ -5,7 +5,6 @@ def split_dataset(dataset):
     trees = []
     attrs = list(dataset[0].keys())
     attrs.remove('Result')
-    print(attrs)
     tree_attr_1 = []
     tree_attr_2 = []
     is_tree_1 = True
@@ -23,13 +22,11 @@ def split_dataset(dataset):
     return trees
 
 def create_tree(dataset, tree_attr):
-    print(tree_attr)
     sub_dataset = []
     for row in dataset:
         attrs = {}
         for key in tree_attr:
             attrs[key] = row[key]
         sub_dataset.append(attrs)
-    print(sub_dataset)
     return decisiontree(training_data=sub_dataset)
 	
