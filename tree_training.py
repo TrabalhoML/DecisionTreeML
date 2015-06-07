@@ -3,6 +3,8 @@ import operator
 from decisionnode import decisionnode
 
 def tree_training(rows):
+    if len(rows) == 0:
+        return None
     attr_values = get_attr_values(rows)
     return train(rows, attr_values)
 
@@ -11,7 +13,7 @@ def train(rows, attr_values):
     value_to_node = None
     attr = get_best_attr(rows)
     if attr == None:
-        result = rows[0]['Result']
+        result = get_most_common_result(rows)
     else:
         value_to_node = {}
         node_values = divide_rows_for_attr_values(rows, attr)
