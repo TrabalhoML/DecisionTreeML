@@ -23,7 +23,7 @@ def split_dataset(dataset):
     return trees
 
 def create_tree(dataset, tree_attr):
-    print(tree_attr)
+    #print(tree_attr)
     sub_dataset = []
     for row in dataset:
         attrs = {}
