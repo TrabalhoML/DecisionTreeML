@@ -11,7 +11,7 @@ def cross_validation(dataset,splits=10,include_whole_tree=False,forest_size=3):
     results_wvotes = 0
     results_stacking = 0
 
-    for i in range(10):
+    for i in range(splits):
         training = dataset[:i*step] + dataset[(i+1)*step:]
         test = dataset[i*step:(i+1)*step]
         forest = split_dataset(training,forest_size)
@@ -23,4 +23,4 @@ def cross_validation(dataset,splits=10,include_whole_tree=False,forest_size=3):
         results_stacking += comitee_t.calculate_precision(comitee_t.stacking())
 
         
-    return (results_votes/10,results_wvotes/10,results_stacking/10)
+    return (results_votes/splits,results_wvotes/splits,results_stacking/splits)
