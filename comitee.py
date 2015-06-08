@@ -24,7 +24,8 @@ class comitee:
                 else:
                     results[j][i] = classified[0][j]
             precisions[i] = classified[1]
-        print("RESULTS: " + str(results) + " PRECISIONS: " + str(precisions))
+        
+        #print("RESULTS: " + str(results) + " PRECISIONS: " + str(precisions))
         return (results, precisions)
 
     def classify_set(self, tree, dataset):
@@ -39,7 +40,7 @@ class comitee:
                 cases_got_right += 1
             results.append(tree_result)
         precision = (cases_got_right/float(len(dataset)))
-        print("RESULT: " + str(results) + " PRECISION: " + str(precision))
+        #print("RESULT: " + str(results) + " PRECISION: " + str(precision))
         return (results, precision)
 
     def vote(self):
@@ -80,3 +81,11 @@ class comitee:
         for case in results:
             final_results.append(calculateBayes(results, case))
         return final_results
+
+    def calculate_precision(self, results):
+        cases_got_right = 0
+        for i in range(0, len(self.validation_data)):
+            if results[i] == self.validation_data[i]['Result']:
+                cases_got_right += 1
+        precision = (cases_got_right/float(len(self.validation_data)))
+        return precision
