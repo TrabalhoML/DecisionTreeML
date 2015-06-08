@@ -47,7 +47,7 @@ training, validation = cross_validation.train_test_split(training, test_size=0.1
 case = validation[0]
 #my_data = training
 
-print(validation[0])
+# print(validation[0])
 
 tree = decisiontree(training_data=my_data)
 forest = split_dataset(my_data, 3)

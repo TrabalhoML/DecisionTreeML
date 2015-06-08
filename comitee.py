@@ -38,7 +38,7 @@ class comitee:
             if tree_result == result:
                 cases_got_right += 1
             results.append(tree_result)
-        precision = (cases_got_right/len(dataset))
+        precision = (cases_got_right/float(len(dataset)))
         print("RESULT: " + str(results) + " PRECISION: " + str(precision))
         return (results, precision)
 
