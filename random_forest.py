@@ -1,28 +1,28 @@
 from random import randint
 from decisiontree import decisiontree
 
-def split_dataset(dataset):
+def split_dataset(dataset, number_of_trees):
     trees = []
     attrs = list(dataset[0].keys())
     attrs.remove('Result')
-    tree_attr_1 = []
-    tree_attr_2 = []
-    is_tree_1 = True
+    trees_attr = []
+    for i in range(0, number_of_trees):
+        trees_attr.append([])
+    tree_index = 0
     while attrs:
         attr = randint(0, len(attrs)-1)
-        if is_tree_1:
-            tree_attr_1.append(attrs.pop(attr))
-        else:
-            tree_attr_2.append(attrs.pop(attr))
-        is_tree_1 = not is_tree_1
-    tree_attr_1.append('Result')
-    tree_attr_2.append('Result')
-    trees.append(create_tree(dataset, tree_attr_1))
-    trees.append(create_tree(dataset, tree_attr_2))
+        trees_attr[tree_index].append(attrs.pop(attr))
+        tree_index += 1
+        tree_index = tree_index%number_of_trees
+    
+    for i in range(0, len(trees_attr)):
+        trees_attr[i].append('Result')
+    for i in range(0, len(trees_attr)):
+        trees.append(create_tree(dataset, trees_attr[i]))
     return trees
 
 def create_tree(dataset, tree_attr):
-    #print(tree_attr)
+    print(tree_attr)
     sub_dataset = []
     for row in dataset:
         attrs = {}
