@@ -22,5 +22,5 @@ def cross_validation(dataset,splits=10,include_whole_tree=False,forest_size=3):
         results_wvotes += comitee_t.calculate_precision(comitee_t.weighted_vote())
         results_stacking += comitee_t.calculate_precision(comitee_t.stacking())
 
-        
+# retorna a precisao do algoritmo com voto, voto ponderado e empilhamento        
     return (results_votes/splits,results_wvotes/splits,results_stacking/splits)
