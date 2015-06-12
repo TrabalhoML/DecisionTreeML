@@ -18,5 +18,23 @@ def convert_dataset_to_dict(dataset, keys):
 dataset = numpy.loadtxt("votes-data.txt",dtype="str", delimiter=",")
 dataset = convert_dataset_to_dict(dataset,["Result",0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
 
-print(str(cross_validation(dataset)))
+print("PRECISION (V, WV, S):")
+print(str(cross_validation(dataset,forest_size=4,include_whole_tree=True,splits=10)))
 
+import pydot
+whole_tree = decisiontree(training_data=dataset)
+
+def draw(parent, child):
+    edge = pydot.Edge(parent,child)
+    graph.add_edge(edge)
+
+def visit(node):
+    if node.result:
+        draw(node.attr,node.result)
+    else:
+        for k,v in node.value_node_dic.items():
+            draw(node.attr,k)
+            visit(v)
+graph = pydot.Dot(graph_type='graph')
+visit(whole_tree.root)
+graph.write_png('votes-whole-tree.png')
